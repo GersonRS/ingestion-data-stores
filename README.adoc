@@ -1,0 +1,154 @@
+= Um template para build e push de imagens Docker
+
+[[_overview]]
+== Overview
+
+Este repositório fornece um template para automatizar o processo de build e push de imagens Docker. Ele utiliza GitHub Actions para criar releases, tags e, em seguida, construir e enviar a imagem Docker com base na tag criada.  Este processo garante versionamento consistente e automatizado das suas imagens Docker, facilitando o rastreamento e a implantação.
+
+[[_features]]
+== Features
+
+* **Workflows de Build Automatizados:**  GitHub Actions workflows para build e push de imagens para Docker Hub e GitHub Container Registry.
+* **Integração com Release Please:**  Utiliza a action `release-please` para gerar automaticamente releases e tags com base nos commits.
+* **Versionamento Consistente:**  A imagem Docker é tagueada com a versão da release, permitindo um controle preciso das versões.
+* **Customizável:**  Adapte facilmente o Dockerfile e os workflows às suas necessidades.
+* **Suporte a Docker Hub e GitHub Container Registry:**  Escolha o registro de imagens que melhor se adapta ao seu projeto.
+* **Fácil de Usar:** Basta clicar em "Use this template" para criar um novo repositório a partir deste template.
+* **Pre-commit Hooks:**  Utiliza pre-commit hooks para garantir a qualidade do código e a consistência dos commits.
+
+[[_getting_started]]
+== Getting Started
+
+[[_prerequisites]]
+=== Prerequisites
+
+* Uma conta Docker Hub (se for usar o workflow `builder-docker-image-dockerhub.yml`).
+* Uma conta GitHub.
+* Um repositório GitHub.
+* Conhecimento básico de Docker e GitHub Actions.
+* Node.js e npm instalados.
+* `pre-commit` instalado (`pip install pre-commit`).
+
+[[_setup]]
+=== Setup
+
+1. Crie um novo repositório a partir deste template clicando no botão "Use this template".
+2. Clone o novo repositório para sua máquina local:
+
+[source,bash]
+----
+git clone git@github.com:<seu_usuario>/<nome_do_repositorio>.git
+----
+3. Navegue até o diretório do projeto:
+
+[source,bash]
+----
+cd <nome_do_repositorio>
+----
+
+4. Instale as dependências:
+
+[source,bash]
+----
+npm install @commitlint/config-conventional
+pre-commit install
+----
+
+5. Configure os segredos do repositório:
+
+    * **Para Docker Hub:** Crie segredos chamados `DOCKERHUB_USERNAME` e `DOCKERHUB_TOKEN` com suas credenciais do Docker Hub.
+    * **Para GitHub Container Registry:** Nenhum segredo adicional é necessário para o GCR.
+
+6. Personalize o `Dockerfile` de acordo com as suas necessidades.
+7. Adapte os workflows em `.github/workflows` para o seu projeto.  Você pode optar por usar o workflow `builder-docker-image-dockerhub.yml` para Docker Hub ou `builder-docker-image-github.yaml` para GitHub Container Registry.
+8. Crie um novo commit e push para o seu repositório.  O workflow `release-please` será executado automaticamente e criará uma release draft quando houver commits suficientes para uma nova versão.
+
+[[_usage]]
+== Usage
+
+O workflow `release-please` monitora os commits no seu repositório.  Quando detecta commits suficientes para uma nova versão (seguindo o Conventional Commits), ele cria automaticamente um release draft.
+
+Após revisar e publicar o release draft, os workflows `builder-docker-image-dockerhub.yml` ou `builder-docker-image-github.yaml` serão acionados.  Eles irão construir a imagem Docker usando o `Dockerfile` e enviar a imagem tagueada para o registro de imagens escolhido (Docker Hub ou GitHub Container Registry).
+
+**Importante:** O nome da imagem Docker construída será derivado do nome do repositório. Por exemplo, se o seu repositório se chama `meu-projeto-incrível`, a imagem Docker será nomeada como `meu-projeto-incrível`.  Isso é definido no workflow de build (e.g., `builder-docker-image-dockerhub.yml`) através da variável `${{ steps.repo-basename.outputs.value }}`.  Se você precisar de um nome de imagem diferente, modifique a linha `images: ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.repo-basename.outputs.value }}` no workflow correspondente.
+
+[[_file_structure]]
+== File Structure
+
+[source,bash]
+----
+.
+├── CHANGELOG.md
+├── CODEOWNERS
+├── commitlint.config.js
+├── Dockerfile
+├── .dockerignore
+├── .github
+│   ├── pull_request_template.md
+│   ├── release-please-config.json
+│   ├── .release-please-manifest.json
+│   └── workflows
+│       ├── builder-docker-image-dockerhub.yml
+│       ├── builder-docker-image-github.yaml
+│       └── release-please.yaml
+├── .gitignore
+├── LICENSE
+├── package.json
+├── .pre-commit-config.yaml
+├── README.adoc
+├── requirements.txt
+└── version.txt
+
+2 directories, 18 files
+----
+
+* **`CHANGELOG.md`**:  Registra as mudanças entre as versões do projeto.
+* **`CODEOWNERS`**:  Define os responsáveis por diferentes partes do código.
+* **`commitlint.config.js`**:  Configuração para o commitlint, que garante que os commits seguem o Conventional Commits.
+* **`Dockerfile`**:  Arquivo que define como a imagem Docker será construída.
+* **`.dockerignore`**:  Lista de arquivos e diretórios que devem ser ignorados durante o build da imagem Docker.
+* **`.github`**:  Diretório contendo configurações específicas do GitHub.
+    * **`pull_request_template.md`**:  Template para pull requests.
+    * **`release-please-config.json`**:  Configuração para a action `release-please`.
+    * **`.release-please-manifest.json`**:  Manifesto gerado pela action `release-please`.
+    * **`workflows`**:  Diretório contendo os workflows do GitHub Actions.
+        * **`builder-docker-image-dockerhub.yml`**:  Workflow para build e push para Docker Hub.
+        * **`builder-docker-image-github.yaml`**:  Workflow para build e push para GitHub Container Registry.
+        * **`release-please.yaml`**:  Workflow que executa a action `release-please`.
+* **`.gitignore`**:  Lista de arquivos e diretórios que devem ser ignorados pelo Git.
+* **`LICENSE`**:  Licença do projeto.
+* **`package.json`**:  Arquivo de manifesto para projetos Node.js (usado pela action `release-please`).
+* **`.pre-commit-config.yaml`**:  Configuração para o pre-commit, que executa verificações de código antes dos commits.
+* **`README.adoc`**:  Este arquivo.
+* **`requirements.txt`**:  Lista de dependências Python.
+* **`version.txt`**:  Arquivo contendo a versão atual do projeto.
+
+
+[[_contributing]]
+== Contributing
+
+Contribuições são o que fazem a comunidade open source um lugar incrível para aprender, inspirar e criar. Qualquer contribuição que você fizer será **muito apreciada**! Por favor, abra uma issue ou pull request..
+
+1. Faça um Fork do projeto
+2. Crie uma Branch para sua Feature (`git checkout -b feature/FeatureIncrivel`)
+3. Adicione suas mudanças (`git add .`)
+4. Comite suas mudanças (`git commit -m 'Adicionando uma Feature incrível!`)
+5. Faça o Push da Branch (`git push origin feature/FeatureIncrivel`)
+6. Abra um Pull Request
+
+
+[[_license]]
+== License
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+[[_support]]
+== Suporte
+
+Entre em contato com o mantenedor do projeto em um dos seguintes lugares:
+
+* Linkedin: https://www.linkedin.com/in/gersonrsantos/
+* Instagram: https://www.instagram.com/gersonrsantos/
+* Twitter: https://twitter.com/gersonrs3
+* Telegram: https://t.me/gersonrsantos
+* Email: gersonrodriguessantos8@gmail.com
