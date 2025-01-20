@@ -31,13 +31,15 @@ class Movies:
         get_movies = pd.read_csv(self.movies_location, low_memory=False)
 
         # fixing column names
-        get_movies.columns = (
+        columns = (
             get_movies.columns.str.strip()
             .str.lower()
-            .str.replace(" ", "_", regex=True)
-            .str.replace("(", "", regex=True)
-            .str.replace(")", "", regex=True)
+            .str.replace(" ", "_")
+            .str.replace("(", "")
+            .str.replace(")", "")
         )
+
+        get_movies.columns = columns
 
         # replace nan to none
         get_movies = get_movies.replace({np.nan: None})
@@ -86,9 +88,9 @@ class Movies:
         get_ratings.columns = (
             get_ratings.columns.str.strip()
             .str.lower()
-            .str.replace(" ", "_", regex=True)
-            .str.replace("(", "", regex=True)
-            .str.replace(")", "", regex=True)
+            .str.replace(" ", "_")
+            .str.replace("(", "")
+            .str.replace(")", "")
         )
 
         # replace nan to none
@@ -118,18 +120,16 @@ class Movies:
         get_keywords.columns = (
             get_keywords.columns.str.strip()
             .str.lower()
-            .str.replace(" ", "_", regex=True)
-            .str.replace("(", "", regex=True)
-            .str.replace(")", "", regex=True)
+            .str.replace(" ", "_")
+            .str.replace("(", "")
+            .str.replace(")", "")
         )
 
         # replace nan to none
         get_keywords = get_keywords.replace({np.nan: None})
 
         # add new column [identity] = [0,1000]
-        get_keywords["user_id"] = np.random.randint(
-            0, 1000, size=(len(get_keywords), 1)
-        )
+        get_keywords["user_id"] = np.random.randint(0, 1000, size=(len(get_keywords), 1))
         get_keywords["dt_current_timestamp"] = str(datetime.now())
 
         # select column ordering

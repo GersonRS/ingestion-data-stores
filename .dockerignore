@@ -22,7 +22,7 @@ public
 CHANGELOG.md
 CODEOWNERS
 commitlint.config.js
-docs/
+docs
 LICENSE
 package.json
 README.adoc

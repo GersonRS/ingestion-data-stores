@@ -79,6 +79,7 @@ docker tag ingestion-data-stores ingestion-data-stores:0.1
 docker push gersonrs/ingestion-data-stores:0.1
 
 # access docker image
+docker run -i -t gersonrs/ingestion-data-stores python3 cli.py 'minio'
 docker run -i -t gersonrs/ingestion-data-stores /bin/bash
 docker run gersonrs/ingestion-data-stores python3.9 cli.py
 ```

@@ -27,14 +27,14 @@ class Requests(object):
 
         # call request with parameters
         # amount of rows to be requested
-        dt_request = requests.get(url=url, params=params)
+        dt_request = requests.get(url=url, params=params, verify=False)
 
         # get data from api
         # data is returned as a list (dict)
         # json format applied
         for url in [url]:
             try:
-                response = requests.get(url)
+                response = requests.get(url, verify=False)
                 response.raise_for_status()
                 dict_request = dt_request.json()
 
