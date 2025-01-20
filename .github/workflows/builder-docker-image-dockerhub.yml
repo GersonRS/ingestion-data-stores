@@ -15,7 +15,7 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v4
-      
+
       -
         name: Docker meta
         id: meta
@@ -44,6 +44,6 @@ jobs:
         name: Generate artifact attestation
         uses: actions/attest-build-provenance@v2
         with:
-          subject-name: ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.repo-basename.outputs.value }}
+          subject-name: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
