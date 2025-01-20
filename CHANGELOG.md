@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.0](https://github.com/GersonRS/ingestion-data-stores/compare/v1.0.0...v1.1.0) (2025-01-20)
+
+
+### 🚀 New Features
+
+* finish project ([dd8f7a7](https://github.com/GersonRS/ingestion-data-stores/commit/dd8f7a71ff9ef6066c5336e605c01f2a99cd599b))
+* first commit ([4b3d8b9](https://github.com/GersonRS/ingestion-data-stores/commit/4b3d8b9758b96ab51fbb27f326db50dc22e7e921))
+* remove build github ([d6b0e73](https://github.com/GersonRS/ingestion-data-stores/commit/d6b0e73ee8b94ad933f659ef4e20c2a49d32ef4e))
+
 ## [1.2.0](https://github.com/GersonRS/template-image-builder/compare/v1.1.0...v1.2.0) (2025-01-19)
 
 
