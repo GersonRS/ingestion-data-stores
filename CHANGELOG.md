@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/GersonRS/ingestion-data-stores/compare/v1.1.0...v1.2.0) (2025-01-20)
+
+
+### 🚀 New Features
+
+* adjust workflow ([6452edb](https://github.com/GersonRS/ingestion-data-stores/commit/6452edb7ee94be23d53d7863c84eac5db59062e9))
+
 ## [1.1.0](https://github.com/GersonRS/ingestion-data-stores/compare/v1.0.0...v1.1.0) (2025-01-20)
 
 
