@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/GersonRS/ingestion-data-stores/compare/v1.2.1...v1.2.2) (2025-01-21)
+
+
+### 🧪 Automated Testing
+
+* new test ([565a427](https://github.com/GersonRS/ingestion-data-stores/commit/565a427870f072364191fe421b5e2340fc2c8387))
+
 ## [1.2.1](https://github.com/GersonRS/ingestion-data-stores/compare/v1.2.0...v1.2.1) (2025-01-20)
 
 
