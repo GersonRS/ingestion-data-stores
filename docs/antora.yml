@@ -1,6 +1,6 @@
 ---
-name: "template-image-builder"
-title: "Um template para build e push de imagens Docker"
+name: "ingestion-data-stores"
+title: "Gerador de Dados para Ingestão"
 version: true
 start_page: README.adoc
 nav:
