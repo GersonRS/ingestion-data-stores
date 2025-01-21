@@ -25,6 +25,8 @@ jobs:
         id: repo-basename
         run: |
           echo "value=`basename ${{ github.repository }}`" >> $GITHUB_OUTPUT
+          echo "${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}"
+          echo ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
         shell: bash
       -
         name: Docker meta
