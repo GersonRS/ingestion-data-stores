@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://github.com/GersonRS/ingestion-data-stores/compare/v1.2.2...v1.3.0) (2025-01-21)
+
+
+### 🚀 New Features
+
+* test new workflow ([9b6e5bf](https://github.com/GersonRS/ingestion-data-stores/commit/9b6e5bfc257d1b6b9fb740fc9a81ab16cd2e8982))
+* test new workflow 2 ([aabb96b](https://github.com/GersonRS/ingestion-data-stores/commit/aabb96b9c6e05df847f8abe8cb4b6bbddb72d3f0))
+* test new workflow 3 ([c8009c5](https://github.com/GersonRS/ingestion-data-stores/commit/c8009c5720d5ae367fe698896245b3868152a0e2))
+* test new workflow 4 ([6e9d797](https://github.com/GersonRS/ingestion-data-stores/commit/6e9d79775e8cdfaad95ff40633bb9774335044f6))
+* test new workflow 5 ([bfce5f8](https://github.com/GersonRS/ingestion-data-stores/commit/bfce5f8cda29cd4a57d507890f353c16c7f4ff04))
+* test new workflow 6 ([d59ea96](https://github.com/GersonRS/ingestion-data-stores/commit/d59ea96dcaa6f03bc5b87275b0bc9df7a8843318))
+* test new workflow 7 ([8eddac8](https://github.com/GersonRS/ingestion-data-stores/commit/8eddac88d2b05b7b27178ba0daa63cb6d646a1d9))
+
 ## [1.2.2](https://github.com/GersonRS/ingestion-data-stores/compare/v1.2.1...v1.2.2) (2025-01-21)
 
 
