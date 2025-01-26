@@ -11,8 +11,25 @@ spec:
       template:
         spec:
           containers:
-          - name: crj-minio-ingestion
-            image: gersonrs/ingestion-data-stores:v1.3.0
+          - name: crj-minio-ingestion-all
+            image: gersonrs/ingestion-data-stores:v1.4.0
+            imagePullPolicy: IfNotPresent
+            command: ["python3","cli.py","minio"]
+            env:
+            - name: MINIO
+              value: minio.minio.svc.cluster.local:9000
+            - name: ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio
+                  key: rootUser
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio
+                  key: rootPassword
+          - name: crj-minio-ingestion-movies
+            image: gersonrs/ingestion-data-stores:v1.4.0
             imagePullPolicy: IfNotPresent
             command: ["python3","cli.py","minio"]
             env:
