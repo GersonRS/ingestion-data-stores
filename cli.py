@@ -38,7 +38,6 @@ load_dotenv()
 
 # load variables
 get_dt_rows = os.getenv("EVENTS", 100)
-amount = os.getenv("AMOUNT", 10)
 kafka_broker = os.getenv("KAFKA_BOOTSTRAP_SERVER")
 kafka_broker_ssl = os.getenv("KAFKA_BOOTSTRAP_SERVER_SSL")
 confluent_cloud_kafka_broker = os.getenv("CONFLUENT_CLOUD_BOOTSTRAP_SERVER")
@@ -124,192 +123,191 @@ if __name__ == "__main__":
     movies_ratings_object_name = Movies().get_ratings(get_dt_rows)
     rides_object_name = Rides().get_multiple_rows(get_dt_rows)
 
-    for _ in range(int(amount)):
-        # apache kafka ~ strimzi
-        if sys.argv[1] == "strimzi-users-json":
-            Kafka().json_producer(
-                broker=kafka_broker,
-                object_name=users_object_name,
-                kafka_topic=users_json_topic,
-            )
+    # apache kafka ~ strimzi
+    if sys.argv[1] == "strimzi-users-json":
+        Kafka().json_producer(
+            broker=kafka_broker,
+            object_name=users_object_name,
+            kafka_topic=users_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-users-json-ssl":
-            KafkaScramSha512().json_producer(
-                broker=kafka_broker_ssl,
-                object_name=users_object_name,
-                kafka_topic=users_json_topic,
-            )
+    if sys.argv[1] == "strimzi-users-json-ssl":
+        KafkaScramSha512().json_producer(
+            broker=kafka_broker_ssl,
+            object_name=users_object_name,
+            kafka_topic=users_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-users-without-log-compaction-json":
-            LogCompactionUsersJson().json_producer(
-                broker=kafka_broker,
-                object_name=users_object_name,
-                kafka_topic=kafka_topic_users_without_log_compaction_json,
-            )
+    if sys.argv[1] == "strimzi-users-without-log-compaction-json":
+        LogCompactionUsersJson().json_producer(
+            broker=kafka_broker,
+            object_name=users_object_name,
+            kafka_topic=kafka_topic_users_without_log_compaction_json,
+        )
 
-        if sys.argv[1] == "strimzi-users-with-log-compaction-json":
-            LogCompactionUsersJson().json_producer(
-                broker=kafka_broker,
-                object_name=users_object_name,
-                kafka_topic=kafka_topic_users_with_log_compaction_json,
-            )
+    if sys.argv[1] == "strimzi-users-with-log-compaction-json":
+        LogCompactionUsersJson().json_producer(
+            broker=kafka_broker,
+            object_name=users_object_name,
+            kafka_topic=kafka_topic_users_with_log_compaction_json,
+        )
 
-        if sys.argv[1] == "strimzi-agent-json":
-            Kafka().json_producer(
-                broker=kafka_broker,
-                object_name=agent_object_name,
-                kafka_topic=agent_json_topic,
-            )
+    if sys.argv[1] == "strimzi-agent-json":
+        Kafka().json_producer(
+            broker=kafka_broker,
+            object_name=agent_object_name,
+            kafka_topic=agent_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-credit-card-json":
-            Kafka().json_producer(
-                broker=kafka_broker,
-                object_name=credit_card_object_name,
-                kafka_topic=credit_card_json_topic,
-            )
+    if sys.argv[1] == "strimzi-credit-card-json":
+        Kafka().json_producer(
+            broker=kafka_broker,
+            object_name=credit_card_object_name,
+            kafka_topic=credit_card_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-musics-json":
-            Kafka().json_producer(
-                broker=kafka_broker,
-                object_name=musics_object_name,
-                kafka_topic=musics_json_topic,
-            )
+    if sys.argv[1] == "strimzi-musics-json":
+        Kafka().json_producer(
+            broker=kafka_broker,
+            object_name=musics_object_name,
+            kafka_topic=musics_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-movies-titles-json":
-            Kafka().json_producer(
-                broker=kafka_broker,
-                object_name=movies_titles_object_name,
-                kafka_topic=movies_titles_data_json_topic,
-            )
+    if sys.argv[1] == "strimzi-movies-titles-json":
+        Kafka().json_producer(
+            broker=kafka_broker,
+            object_name=movies_titles_object_name,
+            kafka_topic=movies_titles_data_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-movies-keywords-json":
-            Kafka().json_producer(
-                broker=kafka_broker,
-                object_name=movies_keywords_object_name,
-                kafka_topic=movies_keywords_data_json_topic,
-            )
+    if sys.argv[1] == "strimzi-movies-keywords-json":
+        Kafka().json_producer(
+            broker=kafka_broker,
+            object_name=movies_keywords_object_name,
+            kafka_topic=movies_keywords_data_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-movies-ratings-json":
-            Kafka().json_producer(
-                broker=kafka_broker,
-                object_name=movies_ratings_object_name,
-                kafka_topic=movies_ratings_data_json_topic,
-            )
+    if sys.argv[1] == "strimzi-movies-ratings-json":
+        Kafka().json_producer(
+            broker=kafka_broker,
+            object_name=movies_ratings_object_name,
+            kafka_topic=movies_ratings_data_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-rides-json":
-            Kafka().json_producer(
-                broker=kafka_broker,
-                object_name=rides_object_name,
-                kafka_topic=rides_json_topic,
-            )
+    if sys.argv[1] == "strimzi-rides-json":
+        Kafka().json_producer(
+            broker=kafka_broker,
+            object_name=rides_object_name,
+            kafka_topic=rides_json_topic,
+        )
 
-        if sys.argv[1] == "strimzi-users-avro":
-            schema_key = sch_users.key
-            schema_value = sch_users.value
-            UsersAvro().avro_producer(
-                kafka_broker,
-                schema_registry_server,
-                schema_key,
-                schema_value,
-                kafka_topic_users_avro,
-                get_dt_rows,
-            )
+    if sys.argv[1] == "strimzi-users-avro":
+        schema_key = sch_users.key
+        schema_value = sch_users.value
+        UsersAvro().avro_producer(
+            kafka_broker,
+            schema_registry_server,
+            schema_key,
+            schema_value,
+            kafka_topic_users_avro,
+            get_dt_rows,
+        )
 
-        if sys.argv[1] == "strimzi-users-without-log-compaction-avro":
-            schema_key = sch_users.key
-            schema_value = sch_users.value
-            LogCompactionUsersAvro().avro_producer(
-                kafka_broker,
-                schema_registry_server,
-                schema_key,
-                schema_value,
-                kafka_topic_users_without_log_compaction_avro,
-                get_dt_rows,
-            )
+    if sys.argv[1] == "strimzi-users-without-log-compaction-avro":
+        schema_key = sch_users.key
+        schema_value = sch_users.value
+        LogCompactionUsersAvro().avro_producer(
+            kafka_broker,
+            schema_registry_server,
+            schema_key,
+            schema_value,
+            kafka_topic_users_without_log_compaction_avro,
+            get_dt_rows,
+        )
 
-        if sys.argv[1] == "strimzi-users-with-log-compaction-avro":
-            schema_key = sch_users.key
-            schema_value = sch_users.value
-            LogCompactionUsersAvro().avro_producer(
-                kafka_broker,
-                schema_registry_server,
-                schema_key,
-                schema_value,
-                kafka_topic_users_with_log_compaction_avro,
-                get_dt_rows,
-            )
+    if sys.argv[1] == "strimzi-users-with-log-compaction-avro":
+        schema_key = sch_users.key
+        schema_value = sch_users.value
+        LogCompactionUsersAvro().avro_producer(
+            kafka_broker,
+            schema_registry_server,
+            schema_key,
+            schema_value,
+            kafka_topic_users_with_log_compaction_avro,
+            get_dt_rows,
+        )
 
-        if sys.argv[1] == "strimzi-agent-avro":
-            schema_key = sch_agent.key
-            schema_value = sch_agent.value
-            AgentAvro().avro_producer(
-                kafka_broker,
-                schema_registry_server,
-                schema_key,
-                schema_value,
-                kafka_topic_agent_avro,
-                get_dt_rows,
-            )
+    if sys.argv[1] == "strimzi-agent-avro":
+        schema_key = sch_agent.key
+        schema_value = sch_agent.value
+        AgentAvro().avro_producer(
+            kafka_broker,
+            schema_registry_server,
+            schema_key,
+            schema_value,
+            kafka_topic_agent_avro,
+            get_dt_rows,
+        )
 
-        if sys.argv[1] == "strimzi-credit-card-avro":
-            schema_key = sch_credit_card.key
-            schema_value = sch_credit_card.value
-            CreditCardAvro().avro_producer(
-                kafka_broker,
-                schema_registry_server,
-                schema_key,
-                schema_value,
-                kafka_topic_credit_card_avro,
-                get_dt_rows,
-            )
+    if sys.argv[1] == "strimzi-credit-card-avro":
+        schema_key = sch_credit_card.key
+        schema_value = sch_credit_card.value
+        CreditCardAvro().avro_producer(
+            kafka_broker,
+            schema_registry_server,
+            schema_key,
+            schema_value,
+            kafka_topic_credit_card_avro,
+            get_dt_rows,
+        )
 
-        if sys.argv[1] == "strimzi-musics-avro":
-            schema_key = sch_music_data.key
-            schema_value = sch_music_data.value
-            MusicsAvro().avro_producer(
-                kafka_broker,
-                schema_registry_server,
-                schema_key,
-                schema_value,
-                kafka_topic_musics_avro,
-                get_dt_rows,
-            )
+    if sys.argv[1] == "strimzi-musics-avro":
+        schema_key = sch_music_data.key
+        schema_value = sch_music_data.value
+        MusicsAvro().avro_producer(
+            kafka_broker,
+            schema_registry_server,
+            schema_key,
+            schema_value,
+            kafka_topic_musics_avro,
+            get_dt_rows,
+        )
 
-        if sys.argv[1] == "strimzi-rides-avro":
-            schema_key = sch_rides.key
-            schema_value = sch_rides.value
-            RidesAvro().avro_producer(
-                kafka_broker,
-                schema_registry_server,
-                schema_key,
-                schema_value,
-                kafka_topic_rides_avro,
-                get_dt_rows,
-            )
+    if sys.argv[1] == "strimzi-rides-avro":
+        schema_key = sch_rides.key
+        schema_value = sch_rides.value
+        RidesAvro().avro_producer(
+            kafka_broker,
+            schema_registry_server,
+            schema_key,
+            schema_value,
+            kafka_topic_rides_avro,
+            get_dt_rows,
+        )
 
-        # relational databases
-        if sys.argv[1] == "mssql":
-            MSSQL().insert_rows()
+    # relational databases
+    if sys.argv[1] == "mssql":
+        MSSQL().insert_rows()
 
-        if sys.argv[1] == "postgres":
-            Postgres().insert_rows()
+    if sys.argv[1] == "postgres":
+        Postgres().insert_rows()
 
-        if sys.argv[1] == "ysql":
-            YSQL().insert_rows()
+    if sys.argv[1] == "ysql":
+        YSQL().insert_rows()
 
-        if sys.argv[1] == "mysql":
-            MySQL().insert_rows()
+    if sys.argv[1] == "mysql":
+        MySQL().insert_rows()
 
-        # nosql databases
-        if sys.argv[1] == "mongodb":
-            MongoDB().insert_rows()
+    # nosql databases
+    if sys.argv[1] == "mongodb":
+        MongoDB().insert_rows()
 
-        if sys.argv[1] == "ycql":
-            YCQL().insert_rows()
+    if sys.argv[1] == "ycql":
+        YCQL().insert_rows()
 
-        # object stores
-        if sys.argv[1] == "minio":
-            MinioStorage().write_all()
+    # object stores
+    if sys.argv[1] == "minio":
+        MinioStorage().write_all()
 
-        if sys.argv[1] == "minio-movies":
-            MinioStorage().write_movies_json()
+    if sys.argv[1] == "minio-movies":
+        MinioStorage().write_movies_json()
