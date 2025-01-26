@@ -216,5 +216,5 @@ class MinioStorage(object):
             i += 1
             if i < count_list:
                 time.sleep(2)
-            else:
-                MinioStorage().write_movies_json()
+
+        MinioStorage().write_movies_json()
