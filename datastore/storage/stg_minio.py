@@ -2,6 +2,7 @@
 import os
 from datetime import datetime
 from io import BytesIO
+import time
 
 import pandas as pd
 from data_requests.api_requests import Requests
@@ -13,8 +14,8 @@ from objects.movies import Movies
 load_dotenv()
 
 # load variables
-size = os.getenv("SIZE")
-get_dt_rows = os.getenv("EVENTS")
+size = int(os.getenv("SIZE", 100))
+get_dt_rows = os.getenv("EVENTS", 100)
 minio = os.getenv("MINIO")
 access_key = os.getenv("ACCESS_KEY")
 secret_key = os.getenv("SECRET_KEY")
@@ -112,9 +113,7 @@ class MinioStorage(object):
         hour = datetime.today().hour
         minute = datetime.today().minute
         second = datetime.today().second
-        file_name = (
-            entity + f"/{entity}_{year}_{month}_{day}_{hour}_{minute}_{second}.json"
-        )
+        file_name = entity + f"/{entity}_{year}_{month}_{day}_{hour}_{minute}_{second}.json"
 
         # init url requests variables
         # creating a dictionary of available objects = entities
@@ -156,7 +155,7 @@ class MinioStorage(object):
 
         # add [user_id] into dataframe
         # add [dt_current_timestamp] into dataframe
-        pd_df_data["user_id"] = Requests().gen_user_id()
+        pd_df_data["user_id"] = Requests().gen_user_id(size)
         pd_df_data["dt_current_timestamp"] = Requests().gen_timestamp()
 
         # connect into minio
@@ -215,3 +214,5 @@ class MinioStorage(object):
 
             # finish count iterable
             i += 1
+            if i < count_list:
+                time.sleep(2)
