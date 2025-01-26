@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/GersonRS/ingestion-data-stores/compare/v1.3.1...v1.4.0) (2025-01-26)
+
+
+### 🚀 New Features
+
+* adjust code ([b316ead](https://github.com/GersonRS/ingestion-data-stores/commit/b316ead4f5c991c5c1b05bf08733f85b5c70caa8))
+
 ## [1.3.1](https://github.com/GersonRS/ingestion-data-stores/compare/v1.3.0...v1.3.1) (2025-01-21)
 
 
