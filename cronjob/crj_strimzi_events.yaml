@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
           - name: crj-strimzi-events
-            image: gersonrs/ingestion-data-stores:v1.4.0 # x-release-please-version
+            image: gersonrs/ingestion-data-stores:v1.5.0 # x-release-please-version
             imagePullPolicy: IfNotPresent
             command: ["/bin/sh", "-c"]
             args:

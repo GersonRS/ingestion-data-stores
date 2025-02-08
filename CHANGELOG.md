@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.5.0](https://github.com/GersonRS/ingestion-data-stores/compare/v1.4.0...v1.5.0) (2025-02-08)
+
+
+### 🚀 New Features
+
+* adjust code ([bbec4be](https://github.com/GersonRS/ingestion-data-stores/commit/bbec4be72b27742a8249c33d4bfbc85d6f22bd09))
+* adjust code ([a7fcd33](https://github.com/GersonRS/ingestion-data-stores/commit/a7fcd33f7c34db9659e09cc023e62332d1690277))
+* adjust code ([c99a7a5](https://github.com/GersonRS/ingestion-data-stores/commit/c99a7a5c929671b799ee0e6447a863c288caeda0))
+
+
+### ⌨️ Code Refactoring
+
+* adjust cron jobs ([9973cc8](https://github.com/GersonRS/ingestion-data-stores/commit/9973cc81cded760fe4f0870ef888cba5d774e933))
+* adjust workflows ([ec58fd5](https://github.com/GersonRS/ingestion-data-stores/commit/ec58fd57f4321b0dce90ff5b337d48a9e9e5fd91))
+
 ## [1.4.0](https://github.com/GersonRS/ingestion-data-stores/compare/v1.3.1...v1.4.0) (2025-01-26)
 
 
