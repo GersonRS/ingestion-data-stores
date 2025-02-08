@@ -11,8 +11,8 @@ spec:
       template:
         spec:
           containers:
-          - name: crj-minio-ingestion
-            image: gersonrs/ingestion-data-stores:v1.3.0
+          - name: crj-minio-ingestion-all
+            image: gersonrs/ingestion-data-stores:v1.4.0 # x-release-please-version
             imagePullPolicy: IfNotPresent
             command: ["python3","cli.py","minio"]
             env:

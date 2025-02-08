@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
           - name: crj-postgres-ingestion
-            image: owshq/ingestion-data-stores:0.1
+            image: gersonrs/ingestion-data-stores:v1.4.0 # x-release-please-version
             imagePullPolicy: IfNotPresent
             command: ["python3.9","cli.py","postgres"]
           restartPolicy: OnFailure

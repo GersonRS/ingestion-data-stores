@@ -73,6 +73,17 @@
         }
       ],
       "draft": false,
+      "extra-files": [
+        "cronjob/crj_minio.yaml",
+        "cronjob/crj_minio.yaml",
+        "cronjob/crj_mongodb.yaml",
+        "cronjob/crj_mssql.yaml",
+        "cronjob/crj_mysql.yaml",
+        "cronjob/crj_postgres.yaml",
+        "cronjob/crj_strimzi_events.yaml",
+        "cronjob/crj_ycql.yaml",
+        "cronjob/crj_ysql.yaml"
+      ],
       "prerelease": false,
       "pull-request-title-pattern": "chore: release ${version}",
       "release-type": "simple"
